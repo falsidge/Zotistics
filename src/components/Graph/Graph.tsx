@@ -152,6 +152,9 @@ const Graph = () => {
           .then((query) => {
             updateQueryState(key, "loading", false);
             return query;
+          }).catch((query)=>{
+            updateQueryState(key, "loading", false);
+            return query;
           })
       );
     });
@@ -166,6 +169,8 @@ const Graph = () => {
         { id: "NP" },
       ];
       values.map(({ data }, i) => {
+        if (data === undefined)
+          return
         const gradeValue: number[] = [];
         const gradesAggregate = data.grades.aggregate;
         const total =
